@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reunião Gisa Ferreira — IA que escala sua autoridade | Rafael</title>
+<meta name="description" content="Apresentação online: atendimento 24/7, GisaGPT e co-piloto de mentoria.">
+<style>
+:root{
+  --bg:#101110; --panel:#171814; --ink:#F2F0E9; --mut:#8A8778; --acc:#E8A020;
+  --ln:rgba(242,240,233,.12); --r:10px; --pill:999px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Inter,sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--acc);color:#101110}
+/* assinatura: linha ouro de progresso */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--acc);z-index:50;transition:width .25s ease-out}
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--ln);position:sticky;top:0;background:rgba(16,17,16,.92);backdrop-filter:blur(10px);z-index:40}
+.brand{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.brand b{color:var(--ink)}
+.count{font-variant-numeric:tabular-nums;font-size:12px;letter-spacing:.18em;color:var(--mut)}
+.count b{color:var(--acc);font-size:15px}
+.deck{max-width:1120px;margin:0 auto;padding:48px;min-height:calc(100svh - 120px);display:flex}
+.slide{display:none;width:100%;animation:up .25s ease-out}
+.slide.on{display:grid;gap:24px;align-content:start}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(32px,5.5vw,56px);line-height:1.05;margin:0;letter-spacing:-.02em;max-width:20ch}
+h2{font-size:22px;line-height:1.25;margin:0;max-width:28ch}
+p.lead{color:var(--mut);font-size:15px;max-width:56ch;margin:0}
+.hero-num{font-size:clamp(32px,6vw,64px);font-variant-numeric:tabular-nums;line-height:1;margin:0;color:var(--ink)}
+.hero-num span{color:var(--acc)}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--panel);border:1px solid var(--ln);border-radius:var(--r);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.card h3{font-size:15px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.12em}
+.card p{margin:0;color:var(--mut)}
+.card b{color:var(--ink)}
+.kpi{background:var(--panel);border:1px solid var(--ln);border-radius:var(--r);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.kpi p.l{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--mut);margin:0}
+.kpi p.v{font-size:32px;font-variant-numeric:tabular-nums;margin:8px 0 4px;line-height:1}
+.kpi p.h{color:var(--mut);margin:0}
+.badge{display:inline-flex;align-items:center;border:1px solid rgba(232,160,32,.4);background:rgba(232,160,32,.12);color:var(--acc);border-radius:var(--pill);padding:4px 12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.badge.n{border-color:var(--ln);background:rgba(255,255,255,.04);color:var(--mut)}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0}
+.flow span{background:var(--panel);border:1px solid var(--ln);border-radius:var(--pill);padding:8px 16px;font-size:13px}
+.flow i{color:var(--acc);font-style:normal}
+ul.tight{margin:0;padding-left:18px;color:var(--mut)}
+ul.tight li{margin:6px 0}
+ul.tight b{color:var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 48px 32px;max-width:1120px;margin:0 auto}
+.btns{display:flex;gap:12px}
+button{font:inherit;cursor:pointer;border-radius:var(--r);padding:12px 20px;font-weight:600;transition:all .2s ease-out;border:1px solid transparent}
+.btn-p{background:var(--acc);color:#101110}
+.btn-p:hover{filter:brightness(1.1)}
+.btn-g{background:transparent;color:var(--ink);border-color:var(--ln)}
+.btn-g:hover{border-color:var(--acc);color:var(--acc)}
+button:disabled{opacity:.4;cursor:not-allowed}
+.dots{display:flex;gap:8px}
+.dots button{width:10px;height:10px;padding:0;border-radius:var(--pill);background:rgba(255,255,255,.15);border:0}
+.dots button.on{background:var(--acc)}
+.notes{display:none;border:1px dashed rgba(232,160,32,.5);border-radius:var(--r);padding:16px 20px;color:var(--mut);font-size:14px}
+body.shownotes .notes{display:block}
+.notes b{color:var(--acc);text-transform:uppercase;font-size:12px;letter-spacing:.15em}
+.hint{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+a{color:var(--acc)}
+@media(max-width:860px){.g3,.g2{grid-template-columns:1fr}.top,.nav{padding-left:24px;padding-right:24px}.deck{padding:24px}h1{font-size:36px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.slide{animation:none}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="top">
+  <div class="brand"><b>RAFAEL</b> · SOLUÇÕES DE IA — PARA GISA FERREIRA</div>
+  <div class="count"><b id="cNow">01</b> / <span id="cTot">09</span></div>
+</div>
+
+<main class="deck">
+
+  <!-- 1 CAPA -->
+  <section class="slide" data-notes="Abra com rapport: você estudou o site dela. Não venda IA genérica, venda escala da autoridade dela. Pergunte se pode gravar.">
+    <p class="label">Reunião online · 20 min · sem compromisso</p>
+    <h1>Gisa, sua autoridade no automático, sem perder você.</h1>
+    <p class="lead">Você transforma imagem em estratégia. Eu coloco IA para atender, ensinar e criar por você — no seu tom, com seu método Power Persona.</p>
+    <div class="flow"><span>Atender 24/7</span><i>→</i><span>Ensinar sem você</span><i>→</i><span>Criar sem esforço</span></div>
+    <div class="grid g3">
+      <div class="kpi"><p class="l">Resposta hoje</p><p class="v">horas</p><p class="h">Lead esfria no WhatsApp e Instagram</p></div>
+      <div class="kpi"><p class="l">Dúvidas repetidas</p><p class="v">toda semana</p><p class="h">Mentorados perguntam o mesmo</p></div>
+      <div class="kpi"><p class="l">Conteúdo parado</p><p class="v">0 — 1 / sem</p><p class="h">Falta tempo, não falta repertório</p></div>
+    </div>
+    <div class="notes"><b>Roteiro — 2 min:</b> “Gisa, estudei seu site, sua mentoria Power Persona e seus livros. Essa apresentação é sobre escalar você sem descaracterizar. Posso te mostrar em 3 blocos?”</div>
+  </section>
+
+  <!-- 2 ENTENDI -->
+  <section class="slide" data-notes="Mostre que entendeu o negócio dela. Cite Power Persona 6 semanas, serviços individuais, livros.">
+    <span class="badge">01 · Eu entendi seu momento</span>
+    <h2>Você vende transformação de imagem, mas a entrega ainda é 100% você.</h2>
+    <div class="grid g3">
+      <div class="card"><h3>Power Persona · 6 semanas</h3><p>Líderes e executivos viram referência com <b>imagem + comunicação + digital</b>. Alto ticket, alta exigência.</p></div>
+      <div class="card"><h3>Serviços individuais</h3><p>Consultoria completa, closet detox, personal shopper. <b>Operação 1:1 que consome agenda.</b></p></div>
+      <div class="card"><h3>Livros + conteúdo</h3><p>Blog, newsletter e guias digitais. <b>Repertório enorme, pouco reaproveitado.</b></p></div>
+    </div>
+    <div class="notes"><b>Roteiro:</b> “Se eu entendi bem, seu gargalo não é cliente, é tempo. Confere? Onde hoje mais vaza: resposta, entrega ou conteúdo?” Deixe ela falar.</div>
+  </section>
+
+  <!-- 3 PILARES -->
+  <section class="slide" data-notes="Apresente a visão antes do produto. 3 verbos fáceis de lembrar.">
+    <span class="badge">02 · A visão em 3 pilares</span>
+    <h2>Não é um robozinho. É um sistema que trabalha nos 3 lugares onde você perde dinheiro.</h2>
+    <div class="grid g3">
+      <div class="card"><h3>1 · Atender</h3><p><b>SDR no WhatsApp + Instagram, 24/7.</b> Qualifica, agenda diagnóstico, cobra no-show, reativa base parada.</p></div>
+      <div class="card"><h3>2 · Ensinar</h3><p><b>GisaGPT, seu clone mentor.</b> Treinado no seu método, livros e aulas. Tira dúvidas no seu tom, cita a fonte.</p></div>
+      <div class="card"><h3>3 · Criar</h3><p><b>Co-piloto + fábrica.</b> Cada mentoria vira resumo, plano de ação e 20 peças de conteúdo.</p></div>
+    </div>
+    <div class="notes"><b>Roteiro:</b> “Qual desses 3 hoje mais dói? Atender, ensinar repetido ou criar conteúdo?” Anote a ordem de prioridade dela.</div>
+  </section>
+
+  <!-- 4 SDR -->
+  <section class="slide" data-notes="Detalhe SDR. Dê exemplo de conversa real. Fale de handoff humano.">
+    <span class="badge">Pilar 1 · Atender 24/7</span>
+    <h2>Lead responde em 30 segundos, mesmo 23h de domingo.</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Como funciona</h3>
+        <div class="flow"><span>Chegou</span><i>→</i><span>Qualifica</span><i>→</i><span>Agenda</span><i>→</i><span>Follow-up</span></div>
+        <ul class="tight"><li>Pergunta perfil: <b>executiva, empreendedora, liberal?</b></li><li>Oferece <b>diagnóstico de marca</b> e agenda direto na sua agenda</li><li>Se faltar, <b>reagenda sozinho</b> + reativa 7, 15, 30 dias</li></ul>
+      </div>
+      <div class="card"><h3>Exemplo real</h3><p>“Oi, sou da equipe Gisa. Para te direcionar: você quer se posicionar para cargo, clientes ou palco?” → agenda terça 10h → envia lembrete → manda mini-auditoria antes da call. <b>Você entra só na call quente.</b></p></div>
+    </div>
+    <div class="notes"><b>Roteiro:</b> “Hoje quem responde seu direct e WhatsApp? Em quanto tempo? Quantos diagnósticos furam por mês?” Quantifique a perda.</div>
+  </section>
+
+  <!-- 5 GISAGPT -->
+  <section class="slide" data-notes="Esse é o coração. Explique base de conhecimento + limites + novo produto assinatura.">
+    <span class="badge">Pilar 2 · GisaGPT — o modelo GisaFerreira</span>
+    <h2>Seus mentorados com você no bolso, sem sugar sua agenda.</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Treinado com o seu acervo</h3><ul class="tight"><li><b>Livros digitais + método Power Persona</b></li><li>Transcrições de mentorias e aulas</li><li>Posts, blog, newsletter — <b>seu tom, não IA genérica</b></li></ul></div>
+      <div class="card"><h3>O que ele responde</h3><p>“Posso usar preto numa reunião com board?” → responde pelo seu framework, cita o capítulo, sugere 3 looks por ocasião. Se foge do escopo, <b>escala para você.</b></p></div>
+    </div>
+    <p class="lead">Vira receita nova: assinatura “Gisa no bolso” para ex-alunas + bônus da mentoria que aumenta percepção de valor e reduz churn.</p>
+    <div class="notes"><b>Roteiro:</b> “Quais 5 dúvidas que você responde toda semana? Se tivesse isso gravado/transcrito, em 2 semanas subimos o piloto.” Peça os materiais.</div>
+  </section>
+
+  <!-- 6 COPILOTO -->
+  <section class="slide" data-notes="Mostre ganho operacional e de conteúdo. 1 aula = 1 mês de conteúdo.">
+    <span class="badge">Pilar 3 · Co-piloto + fábrica de conteúdo</span>
+    <h2>1 mentoria gravada vira entrega + 1 mês de autoridade.</h2>
+    <div class="grid g3">
+      <div class="card"><h3>Durante</h3><p>Grava o Zoom/Meet, gera <b>resumo + plano de ação</b> e joga no WhatsApp da aluna.</p></div>
+      <div class="card"><h3>Depois</h3><p><b>Check-in semanal automático:</b> cobrou progresso? Travou? Alerta você só quem está em risco.</p></div>
+      <div class="card"><h3>Autoridade</h3><p>Da mesma aula saem <b>Reels, carrossel, LinkedIn e newsletter</b> no seu tom para você aprovar em 10 min.</p></div>
+    </div>
+    <div class="notes"><b>Roteiro:</b> “Você grava as mentorias hoje? Se sim, já temos ouro. Se não, começamos a gravar agora.”</div>
+  </section>
+
+  <!-- 7 MVP -->
+  <section class="slide" data-notes="Tire o medo de projeto gigante. Mostre 21 dias, o que precisa dela, sem interromper operação.">
+    <span class="badge n">Como sai do papel · sem risco</span>
+    <h2>Piloto em 21 dias, sem trocar nada do que funciona.</h2>
+    <div class="grid g3">
+      <div class="kpi"><p class="l">Semana 1 · Base</p><p class="v">organizar</p><p class="h">Subimos livros, método, FAQ, agenda. Você só valida o tom.</p></div>
+      <div class="kpi"><p class="l">Semana 2 · Atender</p><p class="v">SDR no ar</p><p class="h">WhatsApp + Instagram respondendo e agendando.</p></div>
+      <div class="kpi"><p class="l">Semana 3 · Ensinar</p><p class="v">GisaGPT</p><p class="h">Clone para 10 mentoradas beta + co-piloto de resumo.</p></div>
+    </div>
+    <p class="lead">LGPD: dados das alunas isolados, IA sinaliza que é IA, tudo com sua aprovação antes de publicar. Humano assume quando precisa.</p>
+    <div class="notes"><b>Roteiro:</b> “Preciso de você 2h/semana para validar tom. Resto é comigo. Topa rodar com 10 alunas?”</div>
+  </section>
+
+  <!-- 8 PRÓXIMO PASSO -->
+  <section class="slide" data-notes="Transforme em discovery ao vivo. Faça as 3 perguntas e ouça. Não apresente preço aqui, apresente critério.">
+    <span class="badge">Próximo passo · vamos desenhar juntas?</span>
+    <h2>Me conta em 5 minutos e eu te digo o que priorizar.</h2>
+    <div class="grid g3">
+      <div class="card"><h3>1 · Entrada</h3><p>Quantos leads/semana no <b>WhatsApp e Direct?</b> Quem responde hoje?</p></div>
+      <div class="card"><h3>2 · Entrega</h3><p>Quantas <b>mentoradas ativas?</b> Qual dúvida você mais repete?</p></div>
+      <div class="card"><h3>3 · Conteúdo</h3><p>O que já está <b>gravado / escrito?</b> Posso usar como base?</p></div>
+    </div>
+    <p class="hint">Pergunte agora — pause o compartilhamento e ouça</p>
+    <div class="notes"><b>Roteiro:</b> Pare aqui. Faça as 3 perguntas. Repita o que ela disse e proponha: “Então Fase 1 = X. Fechamos piloto?”</div>
+  </section>
+
+  <!-- 9 FECHO -->
+  <section class="slide" data-notes="Fechamento com frase dela + CTA único.">
+    <p class="label">Fechamento</p>
+    <p class="hero-num">Seja vista. Seja lembrada. <span>Seja escalável.</span></p>
+    <p class="lead">Proposta: piloto fechado de 21 dias — SDR + GisaGPT para 10 alunas. Você valida tudo, sem fidelidade travada. Se não economizar suas horas e acelerar diagnósticos, desligamos.</p>
+    <div class="flow"><span>Rafael · Soluções de IA</span><i>→</i><span>Resposta em 30s</span><i>→</i><span>Sua voz, seu método</span></div>
+    <div class="notes"><b>Roteiro final:</b> “Quer que eu mande até amanhã o plano do piloto com o que preciso de você? Marcamos o kickoff essa semana?” Um único sim.</div>
+  </section>
+
+</main>
+
+<div class="nav">
+  <div class="btns">
+    <button class="btn-g" id="prev">← Anterior</button>
+    <button class="btn-p" id="next">Próximo →</button>
+  </div>
+  <div class="dots" id="dots"></div>
+  <div class="hint">Setas / espaço · N = roteiro</div>
+</div>
+
+<script>
+(function(){
+var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+var tot=slides.length, cur=0;
+document.getElementById('cTot').textContent=String(tot).padStart(2,'0');
+var dots=document.getElementById('dots');
+slides.forEach(function(_,i){var d=document.createElement('button');d.setAttribute('aria-label','Ir para slide '+(i+1));d.onclick=function(){go(i)};dots.appendChild(d)});
+function go(i){
+cur=Math.max(0,Math.min(tot-1,i));
+slides.forEach(function(s,k){s.classList.toggle('on',k===cur)});
+Array.prototype.forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===cur)});
+document.getElementById('cNow').textContent=String(cur+1).padStart(2,'0');
+document.getElementById('prog').style.width=((cur+1)/tot*100)+'%';
+document.getElementById('prev').disabled=cur===0;
+document.getElementById('next').textContent=cur===tot-1?'Fechar →':'Próximo →';
+try{location.hash='s'+(cur+1)}catch(e){}
+}
+document.getElementById('prev').onclick=function(){go(cur-1)};
+document.getElementById('next').onclick=function(){if(cur===tot-1){go(0)}else{go(cur+1)}};
+document.addEventListener('keydown',function(e){
+if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(cur+1)}
+if(e.key==='ArrowLeft'){go(cur-1)}
+if(e.key==='Home'){go(0)} if(e.key==='End'){go(tot-1)}
+if(e.key==='n'||e.key==='N'){document.body.classList.toggle('shownotes')}
+});
+var tx=0;document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(dx<-40)go(cur+1);if(dx>40)go(cur-1)},{passive:true});
+var h=parseInt((location.hash||'').replace('#s',''),10);go(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
